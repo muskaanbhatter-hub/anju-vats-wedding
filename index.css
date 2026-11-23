@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body {
+  @apply bg-ivory text-ink font-sans antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+::selection { background: #F2D0CB; }
+
+@layer components {
+  .eyebrow { @apply font-sans text-[0.7rem] tracking-[0.35em] uppercase text-gold; }
+  .heading { @apply font-serif font-light text-ink leading-tight; }
+  .divider { @apply mx-auto h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-xs tracking-[0.2em] uppercase transition duration-300;
+  }
+  .btn-solid { @apply bg-rose-deep text-ivory hover:bg-ink; }
+  .btn-outline { @apply border border-gold text-ink hover:bg-gold hover:text-ivory; }
+}
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.from-left { transform: translateX(-32px); }
+.reveal.from-right { transform: translateX(32px); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-slow-zoom, .animate-bob { animation: none !important; }
+}
+
+.fade-up { opacity: 0; animation: fadeUp 1.1s ease forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; animation: none; } }
